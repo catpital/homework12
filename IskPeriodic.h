@@ -61,6 +61,6 @@ bool IskPeriodic(int K, const string& podstroka, const string& stroka)
         }
     }
 
-    if (count >= K) return true;
+    if (count == K) return true;
     else return false;
 }
