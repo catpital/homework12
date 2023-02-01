@@ -27,11 +27,22 @@ void computeLPS(string podstroka, int* lps)
         }
     }
 }
-bool IskPeriodic(int K, const string& podstroka, const string& stroka)
+
+bool IskPeriodic(int K, const string& stroka)
 {
-    // на основе КМП
-    int* lps = new int[podstroka.size()];
+     // на основе КМП
+    int num=0; // индекс  подстроки
     int count = 0;
+    string podstroka;
+    while (num<=stroka.size())
+    {
+            for (int l = 0; l <= (K - 1); l++)
+        {
+            int x = num + l;
+            if (x<=(stroka.size()-1)) podstroka.push_back(stroka[x]);
+        } 
+    int* lps = new int[podstroka.size()];
+   
     computeLPS(podstroka, lps);
 
     int i = 0;
@@ -60,7 +71,9 @@ bool IskPeriodic(int K, const string& podstroka, const string& stroka)
             }
         }
     }
-
-    if (count == K) return true;
+    num = num + K;
+    delete [] lps;
+    }
+    if (count >= K) return true;
     else return false;
 }
